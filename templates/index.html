@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  </head>
+  <style>
+  .header .container{
+  background:none;
+  padding:0;
+  }
+		h1 {
+			color: mediumseagreen;
+			text-align: center;
+		}
+
+		.warning {
+			color: red;
+			font-weight: bold;
+			text-align: center;
+		}
+		.card{
+		margin-left:410px;
+		margin-top: 20px;
+		color: white;
+		}
+		.container{
+		background:#edf2f7;
+		font-weight: bold;
+		padding-bottom:10px;
+		border-radius: 15px;
+		}
+		.header .navbar{
+    background: url('{{ url_for('static', filename='header-bg.png') }}');
+
+    background-position: center;
+    background-size: contain;
+    padding:0rem 5rem;
+}
+
+
+        /* Style for the navbar with a darker green background */
+
+        .navbar-brand{
+    width:7.5rem;
+    margin-top:-0.1rem;
+
+
+
+}
+.navbar-brand img{
+    position:relative;
+    margin-top:0px;
+    margin-left:10px;
+    height:90px;
+}
+.header .navbar-nav .nav-link{
+    color:#fff;
+    text-transform:uppercase;
+    font-size:1.2rem;
+    font-weight: 600;
+    padding:0.5rem 2rem;
+    margin:0 0.2rem;
+
+
+}
+.header .navbar-nav .nav-link:hover,
+.header .navbar-nav .nav-link.active{
+
+    color:green;
+
+}
+.main-btn{
+    position:relative;
+    color:white;
+    background:linear-gradient(to right,#0f7404,#5cb917);
+    z-index:1;
+    overflow:hidden;
+    border:0.2rem solid white;
+    border-radius:3.5rem;
+
+    padding:1rem 3.5rem;
+    font-weight: 600;
+    font-size:1.2rem;
+    margin-top:1.5rem;
+    letter-spacing: 0.2rem;
+}
+.main-btn:hover{
+    background: white;
+    color:green;
+    border:0.2rem solid green;
+
+}
+ body {
+            background-image: url('{{ url_for('static', filename='high-angle-farmland-view.jpg') }}'); /* Replace with the actual path to your image */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Optional: Prevent background from scrolling */
+            color: #333; /* Set the default text color for the body */
+        }
+        .header .header_right span{
+    color:white;
+    display:block;
+    font-weight:500;
+    font-size:1.4rem;
+    margin-right:1rem;
+}
+
+
+	</style>
+
+
+
+
+  <body>
+  <!--=======================navbar=====================================================-->
+    <header id="full_nav">
+        <div class="header">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg">
+                    <a class="navbar-brand" href="#">
+                        <!-- Update the src attribute with the correct path -->
+                         <img src="{{ url_for('static', filename='leaf-motif-icon-illustration-nature-green-eco-2AXYBJD-removebg-preview.png') }}" alt="logo">
+
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Crops</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link " href="#">Contact</a>
+                            </li>
+                        </ul>
+                        <div class="header_right">
+                            <div class="text-lg-end">
+                                <span>Call us</span>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+
+            </div>
+        </div>
+    </header>
+
+
+<!--==========================================================================================-->
+  <div class="container my-3 mt-3">
+      <h1 class="text-success">Crop Recommendation System <span class="text-success">🌱</span></h1>
+
+<!--      adding form-->
+      <form action="/predict" method="POST">
+          <div class="row">
+              <div class="col-md-4">
+					<label for="Nitrogen">Nitrogen</label>
+					<input type="number" id="Nitrogen" name="Nitrogen" placeholder="Enter Nitrogen" class="form-control" required step="0">
+				</div>
+               <div class="col-md-4">
+					<label for="Phosporus">Phosphorus</label>
+					<input type="number" id="Phosporus" name="Phosporus" placeholder="Enter Phosphorus" class="form-control" required step="00">
+				</div>
+				<div class="col-md-4">
+					<label for="Potassium">Potassium</label>
+					<input type="number" id="Potassium" name="Potassium" placeholder="Enter Potassium" class="form-control" required step="0">
+				</div>
+          </div>
+
+          <div class="row mt-4">
+				<div class="col-md-4">
+					<label for="Temperature">Temperature</label>
+					<input type="number" step="0.01" id="Temperature" name="Temperature" placeholder="Enter Temperature in °C" class="form-control" required step="0">
+				</div>
+				<div class="col-md-4">
+					<label for="Humidity">Humidity</label>
+					<input type="number" step="0.01" id="Humidity" name="Humidity" placeholder="Enter Humidity in %" class="form-control" required step="0">
+				</div>
+				<div class="col-md-4">
+					<label for="pH">pH</label>
+					<input type="number" step="0.01" id="Ph" name="Ph" placeholder="Enter pH value" class="form-control" required step="0">
+				</div>
+			</div>
+
+          <div class="row mt-4">
+				<div class="col-md-4">
+					<label for="Rainfall">Rainfall</label>
+					<input type="number" step="0.01" id="Rainfall" name="Rainfall" placeholder="Enter Rainfall in mm" class="form-control" required>
+				</div>
+			</div>
+
+
+
+           <div class="row mt-4">
+
+           <div class="col-md-12 text-center">
+				<button type="submit" class="btn main-btn">Get Recommendation</button>
+			</div>
+			</div>
+      </form>
+
+
+
+       {% if result %}
+		<div class="card bg-dark" style="width: 18rem;">
+		  <img src="{{url_for('static', filename='img.jpg')}}" class="card-img-top" alt="...">
+		  <div class="card-body">
+			<h5 class="card-title">Recommend Crop for cultivation is:</h5>
+			<p class="card-text">{{ result }}</p>
+		  </div>
+		</div>
+	   {% endif %}
+  </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+  </body>
+</html>
